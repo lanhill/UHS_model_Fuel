@@ -1,0 +1,452 @@
+--
+-- *****************************************************************************
+-- *               Underground Hydrogen Storage Benchmark Study                *
+-- *                         Version: 1.0 - License: CC BY                     *
+-- *                    Clausthal University of Technology                     *
+-- *****************************************************************************
+--
+
+FBHPDEF
+50 1000  /
+
+WELSPECS                                
+  WELL3 GROUP1 31 34 1210 GAS 0 STD SHUT YES 1* SEG 3* STD /
+  /
+
+WLIST                                   
+  '*WELLS F' NEW
+  WELL3 /
+  /
+
+COMPDAT                                 
+  WELL3 31 34 2 2 OPEN 1* 1.89577 0.1905 164.316 0 1* Z 9.90003 /
+  WELL3 31 34 3 3 OPEN 1* 1.47081 0.1905 127.482 0 1* Z 9.89976 /
+  WELL3 31 34 4 4 OPEN 1* 1.46764 0.1905 127.207 0 1* Z 9.89976 /
+  WELL3 31 34 5 5 OPEN 1* 4.4673 0.1905 387.202 0 1* Z 9.89973 /
+  WELL3 31 34 6 6 OPEN 1* 4.46731 0.1905 387.203 0 1* Z 9.89972 /
+  WELL3 31 34 7 7 OPEN 1* 5.35562 0.1905 464.197 0 1* Z 9.89971 /
+  WELL3 31 34 8 8 OPEN 1* 5.34435 0.1905 463.22 0 1* Z 9.89971 /
+  WELL3 31 34 9 9 OPEN 1* 10.2979 0.1905 892.565 0 1* Z 9.89971 /
+  WELL3 31 34 10 10 OPEN 1* 10.2982 0.1905 892.59 0 1* Z 9.8997 /
+  WELL3 31 34 11 11 OPEN 1* 1.56672 0.1905 135.796 0 1* Z 9.89974 /
+  WELL3 31 34 12 12 OPEN 1* 1.56673 0.1905 135.796 0 1* Z 9.89974 /
+  /
+
+GRUPTREE                                
+  GROUP1 FIELD /
+  /
+
+WCONINJE                                
+  WELL3 GAS 1* BHP 2* 90 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+--/
+ 
+WINJGAS                                 
+'WELL3' 'STREAM' 'Cushion' 2* /
+ /
+
+TSTEP
+ 2*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+ 30 /
+
+
+WCONINJE                                
+  WELL3 GAS 1* BHP 2* 94 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'Cushion' 2* /
+ /
+
+TSTEP
+ 2*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+ 30 /
+
+WCONINJE                                
+  WELL3 GAS 1* BHP 2* 98 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'Cushion' 2* /
+ /
+
+TSTEP
+ 2*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+ 30 /
+
+WCONINJE                                
+  WELL3 GAS 1* BHP 2* 102 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'Cushion' 2* /
+ /
+
+TSTEP
+ 2*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+ 30 / -- 4 injection cycles of N2, each cycle includes 2x30 injection time + 1 x 30 shut-in; control model BHP (total time 4 x 90 = 360)
+
+
+WCONINJE                                
+  WELL3 GAS 1* RATE 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'PureH2' 2* /
+ /
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 / -- then inject H2 for 90 days, with well shut-in for another 90 days; control model RATE (total time 360 + 180 = 540)
+
+
+WCONPROD                                
+  WELL3 OPEN GRAT 2* 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+15 / -- then produce H2 for 90 days, with well shut-in for 15 days; control model GRAT (total time 540 + 105 = 645)
+
+
+WCONINJE                                
+  WELL3 GAS OPEN RATE 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'PureH2' 2* /
+ /
+
+TSTEP
+3*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 / -- then inject H2 for 90 days, with well shut-in for 90 days; control model RATE (total time 645 + 180 = 825)
+
+WCONPROD                                
+  WELL3 OPEN GRAT 2* 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+15 / -- then produce H2 for 90 days, with well shut-in for 15 days; control model GRAT (825 + 105 = 930)
+
+
+WCONINJE                                
+  WELL3 GAS OPEN RATE 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'PureH2' 2* /
+ /
+
+TSTEP
+3*30 /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 / -- then inject H2 for 90 days, with well shut-in for 90 days; control model RATE (total time 930 + 180 = 1110)
+
+
+WCONPROD                                
+  WELL3 OPEN GRAT 2* 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+TSTEP
+15 / -- then produce H2 for 90 days, with well shut-in for 15 days; control model GRAT (1110 + 105 = 1215)
+
+
+WCONINJE                                
+  WELL3 GAS OPEN RATE 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+--WINJGAS                                 
+--'WELL3' 'STREAM' 'WSTR1' 2* /
+-- /
+
+WINJGAS                                 
+'WELL3' 'STREAM' 'PureH2' 2* /
+ /
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+
+TSTEP
+3*30 / -- then inject H2 for 90 days, with well shut-in for 90 days; control model RATE (total time 1215  + 180 = 1395)
+
+
+WCONPROD                                
+  WELL3 OPEN GRAT 2* 6E+05 /
+  /
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLOPEN                                
+'WELL3' /
+ /
+
+
+TSTEP
+3*30 /
+
+
+TUNING                                  
+0.1 5 /
+/
+/
+
+WELLSHUT                                
+'WELL3' /
+ /
+
+
+TSTEP
+15 / -- then produce H2 for 90 days, with well shut-in for 15 days; control model GRAT (1395 + 105 = 1500)
+
+
